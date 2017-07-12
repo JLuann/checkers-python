@@ -171,7 +171,7 @@ class Game:
         self.display_message(u"Créditos", (20, top_offset), None, 100, (0,174,136), True, False)
 
         top_offset += 100
-        self.display_message(u"Desenvolvido por Jadson Luan (Julho/2016)", (left_offset, top_offset), None, text_size, text_color, False, False)
+        self.display_message(u"Desenvolvido por Jadson Luan (Julho/2017)", (left_offset, top_offset), None, text_size, text_color, False, False)
 
         top_offset += 30
         self.display_message(u"Miniprojeto de Programação I e Laboratório de Programação I", (left_offset, top_offset), None, text_size, text_color, False, False)
