@@ -6,8 +6,8 @@ import pygame, sys
 from pygame.locals import *
 
 # CONSTANTS
-HELP, START, QUIT = 1, 2, 3
-SHOW_MENU, MATCH_RUNNING, SHOW_MANUAL, GAMEOVER = 1, 2, 3, 4
+HELP, START, CREDITS, QUIT = 1, 2, 3, 4
+SHOW_MENU, MATCH_RUNNING, SHOW_MANUAL, SHOW_CREDITS, GAMEOVER = 1, 2, 3, 4, 5
 BLOCKED, FREE, BLACK, BLACK_KING, WHITE, WHITE_KING = "X", " ", "b", "B", "w", "W"
 SUGGESTED, MOVEABLE, NOT_MOVEABLE, KING = "S", "M", "NM", "K"
 
@@ -75,24 +75,26 @@ class Game:
     def show_menu(self):
         screen = self.screen
         width, height = self.screen_size
-        screen.fill((0,87,68))
+        screen.fill((30,29,29))
 
         top_offset = 225
-        self.display_message("Damas", (width/2, top_offset), "Verdana", 50, (150,150,154), True)
+        self.display_message("Damas", (width/2, top_offset), None, 70, (0,174,136), True)
 
         top_offset += 50
-        msg = self.display_message("Iniciar", (width/2, top_offset), "comic-sans", 30, (215,215,220))
+        msg = self.display_message("Iniciar", (width/2, top_offset), None, 30, (215,215,220))
         self.menu_options[START] = msg
 
         top_offset += 25
-        msg = self.display_message("Como jogar", (width/2, top_offset), "comic-sans", 30, (215,215,220))
+        msg = self.display_message("Como jogar", (width/2, top_offset), None, 30, (215,215,220))
         self.menu_options[HELP] = msg
 
         top_offset += 25
-        msg = self.display_message("Sair", (width/2, top_offset), "comic-sans", 30, (215,215,220))
-        self.menu_options[QUIT] = msg
+        msg = self.display_message(u"Créditos", (width/2, top_offset), None, 30, (215,215,220))
+        self.menu_options[CREDITS] = msg
 
-        self.display_message("Criado por: Jadson Luan", (width/2, height - 30), "roboto", 30, (255,215,0))
+        top_offset += 25
+        msg = self.display_message("Sair", (width/2, top_offset), None, 30, (215,215,220))
+        self.menu_options[QUIT] = msg
 
         pygame.display.flip()
 
@@ -156,13 +158,50 @@ class Game:
 
         pygame.display.flip()
 
+    def show_credits(self):
+        screen = self.screen
+        width, height = self.screen_size
+        screen.fill((30,29,29))
+
+        text_size = 30
+        text_color = (214,213,213)
+
+        left_offset = 60
+        top_offset = 80
+        self.display_message(u"Créditos", (20, top_offset), None, 100, (0,174,136), True, False)
+
+        top_offset += 100
+        self.display_message(u"Desenvolvido por Jadson Luan (Julho/2016)", (left_offset, top_offset), None, text_size, text_color, False, False)
+
+        top_offset += 30
+        self.display_message(u"Miniprojeto de Programação I e Laboratório de Programação I", (left_offset, top_offset), None, text_size, text_color, False, False)
+
+        top_offset += 30
+        self.display_message(u"Ciência da Computação, UFCG", (left_offset, top_offset), None, text_size, text_color, False, False)
+
+        top_offset += 60
+        self.display_message(u"Ferramentas utilizadas", (left_offset, top_offset), None, text_size + 5, (0,174,136), True, False)
+
+        left_offset += 30
+
+        top_offset += 30
+        self.display_message(u"Python 2.7.x (https://www.python.org/)", (left_offset, top_offset), None, text_size, text_color, False, False)
+
+        top_offset += 30
+        self.display_message(u"Pygame (http://www.pygame.org/)", (left_offset, top_offset), None, text_size, text_color, False, False)
+
+
+        self.display_message(u"Pressione 'ESC' para retornar ao menu", (width/2, height - 30), "roboto", 30, (150,150,154), False)
+
+        pygame.display.flip()
+
     def loop(self):
         while True:
             self.clock.tick(30)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit(0)
-                elif event.type == KEYDOWN and (self.gamestate == SHOW_MANUAL or self.gamestate == GAMEOVER) and event.key == K_ESCAPE:
+                elif event.type == KEYDOWN and (self.gamestate == SHOW_MANUAL or self.gamestate == GAMEOVER or self.gamestate == SHOW_CREDITS) and event.key == K_ESCAPE:
                     self.gamestate = SHOW_MENU
                     self.show_menu()
 
@@ -181,6 +220,9 @@ class Game:
                             elif key == HELP:
                                 self.show_help()
                                 self.gamestate = SHOW_MANUAL
+                            elif key == CREDITS:
+                                self.show_credits()
+                                self.gamestate = SHOW_CREDITS
                             elif key == QUIT:
                                 sys.exit(0)
             elif self.gamestate == MATCH_RUNNING:
