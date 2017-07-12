@@ -103,8 +103,9 @@ class Game:
         width, height = self.screen_size
         screen.fill((30,29,29))
 
-        top_offset = 40
-        self.display_message("Manual", (20, top_offset), "Verdana", 100, (150,150,154), True, False)
+        # Regras
+        top_offset = 20
+        self.display_message("Regras", (20, top_offset), None, 70, (0,174,136), True, False)
 
         dica1 = u"1. A pedra (peça comum) anda só para frente, uma casa de cada vez."
         dica2 = u"2. Quando a pedra atinge a oitava linha do tabuleiro ela é promovida à dama."
@@ -112,47 +113,64 @@ class Game:
         dica4 = u"4. A dama não pode saltar uma peça da mesma cor."
         dica5 = u"5. Duas ou mais peças juntas, na mesma diagonal, não podem ser capturadas."
         dica6 = u"6. A pedra e a dama podem capturar tanto para frente como para trás, uma ou mais peças."
-        dica7 = u"7. Uma pedra só será coroada se no fim do turno ela estiver posicionada numa casa de coroação."
+        dica7 = u"7. Uma pedra só será coroada se no fim do turno ocupar uma casa de coroação."
         dica8 = u"8. A captura é obrigatória."
         dica9 = u"9. A vitória é obtida se o adversário não possuir mais peças ou jogadas possíveis."
 
-        dica10 = u"Se ao clicar em uma peça, a casa que ela está posicionada ficar vermelha, ela não pode se mover."
-        dica11 = u"Motivos: Não há jogadas possíveis OU você possui tomada(s) obrigatória(s) com outra(s) peça(s)."
-
         hint_color, hint_size = (255,255,255), 25
-        left_offset = 30
-        top_offset += 130
-        self.display_message(dica1, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        left_offset = 60
+        top_offset += 30
 
         top_offset += 30
-        self.display_message(dica2, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica1, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica3, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica2, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica4, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica3, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica5, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica4, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica6, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica5, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica7, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica6, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica8, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica7, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 30
-        self.display_message(dica9, (left_offset, top_offset), "roboto", hint_size, hint_color, False, False)
+        self.display_message(dica8, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+
+        # Como jogar
+        dica_a = u"Para movimentar uma peça, clique nela e em seguida em uma das casas sugeridas."
+        dica_b = u"Caso a casa que você clicou ficar vermelha, ela não pode realizar nenhum movimento."
+        dica_c = u"Uma peça não pode se mover quando:"
+        dica_ca = u"Não há jogadas possíveis;"
+        dica_cb = u"Existe alguma tomada obrigatória."
 
         top_offset += 60
-        self.display_message(dica10, (left_offset, top_offset), "roboto", hint_size, (111,200,223), False, False)
+        self.display_message("Como jogar", (30, top_offset), None, hint_size * 2, (0,174,136), True, False)
 
-        top_offset += 30
-        self.display_message(dica11, (left_offset, top_offset), "roboto", hint_size, (111,200,223), False, False)
+        #left_offset += 30
+        top_offset += 40
+        self.display_message(dica_a, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+
+        top_offset += 25
+        self.display_message(dica_b, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+
+        top_offset += 35
+        self.display_message(dica_c, (left_offset, top_offset), None, hint_size, (204,0,0) , True, False)
+
+        left_offset += 30
+        top_offset += 25
+        self.display_message(dica_ca, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+
+        top_offset += 25
+        self.display_message(dica_cb, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         self.display_message(u"Pressione 'ESC' para retornar ao menu", (width/2, height - 30), "comic-sans", 30, (150,150,154), False)
 
