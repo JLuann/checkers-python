@@ -146,31 +146,31 @@ class Game:
         self.display_message(dica8, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         # Como jogar
-        dica_a = u"Para movimentar uma peça, clique nela e em seguida em uma das casas sugeridas."
-        dica_b = u"Caso a casa que você clicou ficar vermelha, ela não pode realizar nenhum movimento."
-        dica_c = u"Uma peça não pode se mover quando:"
-        dica_ca = u"Não há jogadas possíveis;"
-        dica_cb = u"Existe alguma tomada obrigatória."
+        hint_a = u"Para movimentar uma peça, clique nela e em seguida em uma das casas sugeridas."
+        hint_b = u"Caso a casa que você clicou ficar vermelha, ela não pode realizar nenhum movimento."
+        hint_c = u"Uma peça não pode se mover quando:"
+        hint_ca = u"Não há jogadas possíveis;"
+        hint_cb = u"Existe alguma tomada obrigatória."
 
         top_offset += 60
         self.display_message("Como jogar", (30, top_offset), None, hint_size * 2, (0,174,136), True, False)
 
         #left_offset += 30
         top_offset += 40
-        self.display_message(dica_a, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+        self.display_message(hint_a, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 25
-        self.display_message(dica_b, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+        self.display_message(hint_b, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 35
-        self.display_message(dica_c, (left_offset, top_offset), None, hint_size, (204,0,0) , True, False)
+        self.display_message(hint_c, (left_offset, top_offset), None, hint_size, (204,0,0) , True, False)
 
         left_offset += 30
         top_offset += 25
-        self.display_message(dica_ca, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+        self.display_message(hint_ca, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         top_offset += 25
-        self.display_message(dica_cb, (left_offset, top_offset), None, hint_size, hint_color, False, False)
+        self.display_message(hint_cb, (left_offset, top_offset), None, hint_size, hint_color, False, False)
 
         self.display_message(u"Pressione 'ESC' para retornar ao menu", (width/2, height - 30), "comic-sans", 30, (150,150,154), False)
 
